@@ -4,5 +4,9 @@ export type QueueNodeType = {
   priority:  number
 }
 
+export type LinkedListNodeType = {
+  value: any,
+  next: LinkedListNodeType | null
+}
 
 export default {}

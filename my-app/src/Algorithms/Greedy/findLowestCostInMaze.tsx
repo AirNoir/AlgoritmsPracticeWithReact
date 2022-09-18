@@ -4,13 +4,6 @@ import PriorityQueue from "../../DataStructures/PriorityQueue";
 const checkMaze = (source: number[][], start: number[], target: number[]) => {
   const pq = PriorityQueue();
   pq.enqueue({ element: start, priority: source[start[0]][start[1]] });
-  while(true) {
-
-    if
-
-
-  }
-
 };
 
 const Maze = () => {
