@@ -2,15 +2,15 @@ import TreeNode from './TreeNode'
 import {TreeNodeType} from '../types'
 
 
-const BinarySearhTree = function<T>(rootKey: any, rootValue?: any) {
+const BinarySearhTree = function<T1, T2>(rootKey: any, rootValue?: any) {
 
-  const root = TreeNode(rootValue)
+  let root = TreeNode(rootKey, rootValue)
   
-  const search = function(val: T) {
+  const search = function(val: T2) {
     return searchWithCurrentNode(root, val)
   }
 
-  const searchWithCurrentNode = (current: TreeNodeType, val: T) => {
+  const searchWithCurrentNode = (current: TreeNodeType, val: T2) => {
     if(current.value === val) {
       return current
     }
@@ -27,27 +27,29 @@ const BinarySearhTree = function<T>(rootKey: any, rootValue?: any) {
   }
 
 
-  const insert = function(val: T) {
-    const current = root
-    insertWithCurrentNode(current, val)
+  const insert = function(key: T1, val: T2) {
+    let current = root
+    root = insertWithCurrentNode(current, key, val)
   }
 
-  const insertWithCurrentNode = (current: TreeNodeType, val: T) => {
+  const insertWithCurrentNode = (current: TreeNodeType | null, key: T1, val: T2) => {
     if(!current) {
-      return TreeNode(val)
+      return TreeNode(key, val)
     }
 
-    if(current.value < val) {
-      current.left =  (current.left, val)
+    if(current.key < key) {
+      current.left =  insertWithCurrentNode(current.left, key, val)
     }
 
-    if(current.value > val) {
-      current.right = insertWithCurrentNode(current.right, val)
+    if(current.key > val) {
+      current.right = insertWithCurrentNode(current.right, key, val)
     }
 
-    if(current.value === val) {
+    if(current.key === key) {
       current.value = val
     }
+
+    return current
 
   }
 
