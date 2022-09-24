@@ -9,4 +9,13 @@ export type LinkedListNodeType = {
   next: LinkedListNodeType | null
 }
 
+
+
+export type TreeNodeType = {
+  key: any,
+  value: any,
+  left: TreeNodeType | null
+  right: TreeNodeType | null
+}
+
 export default {}
