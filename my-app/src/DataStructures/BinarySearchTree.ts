@@ -50,12 +50,49 @@ const BinarySearhTree = function<T1, T2>(rootKey: any, rootValue?: any) {
     }
 
     return current
+  }
+
+  const size = function(): number {
+    return getNodeSize(root)
+  }
+
+  const getNodeSize = function(current: TreeNodeType | null): number {
+    if(!current) {
+      return 0
+    }
+    return current.count
+  }
+
+  const rank = function(key: T1): number {
+    return getNodeRank(key, root)
+  }
+
+  const getNodeRank = function(key: T1, current: TreeNodeType | null): number {
+    if(!current) {
+      return 0
+    }
+    // should implement compareTo here
+    if(key < current.key ) {
+      return getNodeRank(key, current.left)
+    }
+
+    if(key > current.key) {
+      return 1 + getNodeSize(current.left) + getNodeRank(key, current.right)
+    }
+
+    return 0
+  }
+
+  const remove = function(key: T1): void {
 
   }
 
   return {
     search,
-    insert
+    insert,
+    size,
+    rank,
+    remove
   }
 
 

@@ -16,6 +16,7 @@ export type TreeNodeType = {
   value: any,
   left: TreeNodeType | null
   right: TreeNodeType | null
+  count: number
 }
 
 export default {}
